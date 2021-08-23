@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+    
+<head>
+        <title>登录页面</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}" />
+        <link rel="stylesheet" th:href="@{/css/matrix-login.css}" />
+        <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <div id="loginbox">
+        	<h1 th:text="${msg!=null?msg:''}"></h1>
+            <form id="loginform" class="form-vertical" method="post" th:action="${action}">
+				 <div class="control-group normal_text"> <h3><img th:src="@{/img/logo.png}" alt="Logo" /></h3></div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on bg_lg"><i class="icon-user"></i></span><input type="text" name="username" placeholder="用户名" />
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on bg_ly"><i class="icon-lock"></i></span><input type="password" name="password" placeholder="密码" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">忘记密码?</a></span>
+                    <span class="pull-right"><button type="submit" class="btn btn-success"> 登录</button></span>
+                </div>
+            </form>
+            <form id="recoverform" action="#" class="form-vertical">
+				<p class="normal_text">请输入正确的用户名密码.</p>
+				
+                    <div class="controls">
+                        <div class="main_input_box">
+                            <span class="add-on bg_lo"><i class="icon-envelope"></i></span><input type="text" placeholder="E-mail address" />
+                        </div>
+                    </div>
+               
+                <div class="form-actions">
+                    <span class="pull-left"><a href="#" class="flip-link btn btn-success" id="to-login">&laquo; 返回登录</a></span>
+                    <span class="pull-right"><a class="btn btn-info"/></a></span>
+                </div>
+            </form>
+        </div>
+        
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/matrix.login.js}"></script>
+    </body>
+
+</html>

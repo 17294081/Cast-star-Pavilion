@@ -1,0 +1,32 @@
+server:
+  port: 8087
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521/XEXDB
+    username: LUNWEN
+    password: 42951667
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    cache: false
+  messages:
+    basename: i18n/messages
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: druid
+  servlet:
+    multipart:
+      max-file-size:  30MB
+      max-request-size:  30MB
+  mvc:
+    static-path-pattern: /**
+# MyBatis
+mybatis-plus:
+  type-aliases-package: com.example.paper.entity
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    jdbc-type-for-null: 'null'

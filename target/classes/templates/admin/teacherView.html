@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head th:replace="common/fragmentHtml :: common_head(~{::title},~{::link},~{})">
+    <title>论文</title>
+    <link rel="stylesheet" th:href="@{/css/uniform.css}" />
+    <link rel="stylesheet" th:href="@{/css/select2.css}" />
+</head>
+<body>
+<div th:replace="common/fragmentHtml :: header"></div>
+
+<div th:replace="common/fragmentHtml :: admin-nav"></div>
+
+<div th:replace="common/fragmentHtml :: admin"></div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a> <a
+                href="#" class="current">用户</a></div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                        <h5>信息</h5><h5><a href="/admin/teacherInsert">添加老师</a></h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>账户名</th>
+                                <th>老师名称</th>
+                                <th>性别</th>
+                                <th>角色</th>
+                                <th>院系</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="gradeA" th:each="te,key:${teachers}">
+                                <td th:text="${key.index+1}"></td>
+                                <td th:text="${te.username}"></td>
+                                <td th:text="${te.name}"></td>
+                                <td th:text="${te.sex}"></td>
+                                <td th:text="${te.role}"></td>
+                                <td th:text="${te.department}"></td>
+                                <td><a><i class="icon-remove" style="margin-left: 5%"  th:value="${te.id}"></i></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/fragmentHtml :: footer">
+</div>
+
+<!--end-Footer-part-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<div th:replace="common/fragmentHtml :: table_seach"></div>
+
+
+
+<script type="text/javascript">
+    $(".icon-remove").click(function () {
+        var flg=confirm("是否将此人删除-_-！")
+        if (flg){
+            var id=$(this).attr("value")
+            $.post("/admin/delTea/"+id,{},function (data) {
+                if (data.code==200){
+                    alert(data.msg)
+                    window.location.reload()
+                }else
+                    alert(data.msg)
+            })
+        }
+    })
+ </script>
+</body>
+</html>

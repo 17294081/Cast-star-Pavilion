@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head th:replace="common/fragmentHtml :: common_head(~{::title},~{::link},~{})">
+    <title>论文</title>
+    <link rel="stylesheet" th:href="@{/css/colorpicker.css}" />
+    <link rel="stylesheet" th:href="@{/css/datepicker.css}" />
+    <link rel="stylesheet" th:href="@{/css/uniform.css}" />
+    <link rel="stylesheet" th:href="@{/css/select2.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-wysihtml5.css}" />
+</head>
+<body>
+<div th:replace="common/fragmentHtml :: header"></div>
+
+<div th:replace="common/fragmentHtml :: student-nav"></div>
+
+<div th:replace="common/fragmentHtml :: student"></div>
+
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="/index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+            首页</a> <a href="#" class="tip-bottom">学生</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>添加学生</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="/student/update" method="post" class="form-horizontal" enctype="multipart/form-data">
+                            <input type="hidden" th:value="${student.id}" name="id">
+                            <div class="control-group">
+                                <label class="control-label">账户名 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="username" th:value="${student.username}" required placeholder="账户名"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">密码 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="password"  th:value="${student.password}" required placeholder="密码"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">姓名 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="name"  th:value="${student.name}" required placeholder="姓名"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">性别 :</label>
+                                <div class="controls">
+                                    <select name="sex" class="span11">
+                                        <option value="1" th:selected="${student.sex=='1'}">男</option>
+                                        <option value="2"  th:selected="${student.sex=='2'}">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">学号 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="sno"  th:value="${student.sno}" required placeholder="学号"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">院系 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="department"  th:value="${student.department}" required placeholder="院系"/>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success">修改信息</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/fragmentHtml :: footer">
+</div>
+
+<!--end-Footer-part-->
+<div th:replace="common/fragmentHtml :: table_from">
+
+</div>
+
+</body>
+</html>

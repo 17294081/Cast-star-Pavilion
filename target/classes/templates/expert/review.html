@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head th:replace="common/fragmentHtml :: common_head(~{::title},~{::link},~{})">
+    <title>论文</title>
+    <link rel="stylesheet" th:href="@{/css/colorpicker.css}"/>
+    <link rel="stylesheet" th:href="@{/css/datepicker.css}"/>
+    <link rel="stylesheet" th:href="@{/css/uniform.css}"/>
+    <link rel="stylesheet" th:href="@{/css/select2.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-wysihtml5.css}"/>
+</head>
+<body>
+<div th:replace="common/fragmentHtml :: header"></div>
+
+<div th:replace="common/fragmentHtml :: expert-nav"></div>
+
+<div th:replace="common/fragmentHtml :: student"></div>
+
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="/index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+            首页</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>评审</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="/expert/review" method="post" class="form-horizontal"
+                              enctype="multipart/form-data">
+                            <input type="hidden" th:value="${paper.id}" name="id">
+                            <div class="control-group">
+                                <label class="control-label">论文题目 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="paperName" th:value="${paper.paperName}"
+                                           disabled placeholder="论文题目"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">上传论文（pdf格式） :</label>
+                                <div class="controls">
+                                    <span><a th:href="${paper.paperFile}" target="_blank">原文档</a></span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">来源 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="source" th:value="${paper.source}" disabled
+                                           placeholder="来源"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">字数 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="words" th:value="${paper.words}" disabled
+                                           placeholder="字数"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">领域 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="field" th:value="${paper.field}" disabled
+                                           placeholder="领域"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">现象 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="phenomenon" th:value="${paper.phenomenon}"
+                                           disabled placeholder="现象"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">指导老师 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="instructor" th:value="${paper.instructorName}"
+                                           disabled placeholder="指导老师"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">评审结果</label>
+                                <div class="controls">
+                                    <label>
+                                        <div class="radio" id="uniform-undefined">
+                                            <span class="">
+                                                <input type="radio" name="type" value="2" style="opacity: 0;">
+                                            </span>
+                                        </div>
+                                        通过
+                                    </label>
+                                    <label>
+                                        <div class="radio" id="uniform-undefined">
+                                            <span class="">
+                                                <input type="radio" name="type" value="3" style="opacity: 0;">
+                                            </span>
+                                        </div>
+                                        不通过
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success">提交</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<div th:replace="common/fragmentHtml :: footer">
+</div>
+
+<!--end-Footer-part-->
+<div th:replace="common/fragmentHtml :: table_from">
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#phenomenon").change(function () {
+            if ($(this).val() != "无") {
+                $("#expert").show();
+            } else {
+                $("#expert").hide();
+            }
+        })
+    })
+</script>
+</body>
+</html>

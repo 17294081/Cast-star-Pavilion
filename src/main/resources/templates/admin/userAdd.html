@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head th:replace="common/fragmentHtml :: common_head(~{::title},~{::link},~{})">
+    <title>论文</title>
+    <link rel="stylesheet" th:href="@{/css/colorpicker.css}" />
+    <link rel="stylesheet" th:href="@{/css/datepicker.css}" />
+    <link rel="stylesheet" th:href="@{/css/uniform.css}" />
+    <link rel="stylesheet" th:href="@{/css/select2.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-wysihtml5.css}" />
+</head>
+<body>
+<div th:replace="common/fragmentHtml :: header"></div>
+
+<div th:replace="common/fragmentHtml :: admin-nav"></div>
+
+<div th:replace="common/fragmentHtml :: admin"></div>
+
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="/admin/index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+            首页</a> <a href="#" class="tip-bottom">管理员</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>添加用户</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="/admin/teacherInsert" method="post" class="form-horizontal" enctype="multipart/form-data">
+                            <div class="control-group">
+                                <label class="control-label">账户名 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="username" required placeholder="账户名"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">密码 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="password" required placeholder="密码"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">姓名 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="name" required placeholder="姓名"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">性别 :</label>
+                                <div class="controls">
+                                    <select name="sex" class="span11">
+                                        <option value="1">男</option>
+                                        <option value="2">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">院系 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="department" required placeholder="院系"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">角色 :</label>
+                                <div class="controls">
+                                    <select name="role" class="span11">
+                                        <option value="1">老师</option>
+                                        <option value="2">专家</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success">添加</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/fragmentHtml :: footer">
+</div>
+
+<!--end-Footer-part-->
+<div th:replace="common/fragmentHtml :: table_from">
+
+</div>
+
+</body>
+</html>

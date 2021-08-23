@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head th:replace="common/fragmentHtml :: common_head(~{::title},~{::link},~{})">
+    <title>论文</title>
+    <link rel="stylesheet" th:href="@{/css/uniform.css}" />
+    <link rel="stylesheet" th:href="@{/css/select2.css}" />
+</head>
+<body>
+<div th:replace="common/fragmentHtml :: header"></div>
+
+<div th:replace="common/fragmentHtml :: student-nav"></div>
+
+<div th:replace="common/fragmentHtml :: student"></div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a> <a
+                href="#" class="current">用户</a></div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                        <h5>信息</h5><h5><a href="/paper/insert">添加论文</a></h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>论文题目</th>
+                                <th>来源</th>
+                                <th>字数</th>
+                                <th>领域</th>
+                                <th>指导老师</th>
+                                <th>现象</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="gradeA" th:each="paper,key:${papers}">
+                                <td th:text="${key.index+1}"></td>
+                                <td><a th:href="@{${paper.paperFile}}" target="_blank" th:text="${paper.paperName}"></a></td>
+                                <td th:text="${paper.source}"></td>
+                                <td th:text="${paper.words}"></td>
+                                <td th:text="${paper.field}"></td>
+                                <td th:text="${paper.instructorName}"></td>
+                                <td th:text="${paper.phenomenon}"></td>
+                                <td>
+                                    <span th:if="${paper.type==('1')}">待检测</span>
+                                    <span th:if="${paper.type==('4')}">待审核</span>
+                                    <span th:if="${paper.type==('2')}">通过</span>
+                                    <span th:if="${paper.type==('3')}">不通过</span>
+                                </td>
+                                <td><a th:if="${paper.type!=('2')}" th:href="@{'/paper/update/'+${paper.id}}">重传论文</a><a th:if="${paper.type==('2')}" th:href="@{'/paper/look/'+${paper.id}}">详细信息</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/fragmentHtml :: footer">
+</div>
+
+<!--end-Footer-part-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<div th:replace="common/fragmentHtml :: table_seach"></div>
+
+
+
+<!--<script type="text/javascript">
+    $(".icon-remove").click(function () {
+        var flg=confirm("是否将-_-！")
+        if (flg){
+            var id=$(this).attr("value")
+            $.post("/user/updateStorp/"+id,{},function (data) {
+                if (data.code==200){
+                    alert(data.msg)
+                    window.location.reload()
+                }else
+                    alert(data.msg)
+            })
+        }
+    })
+    $(".icon-ok").click(function () {
+        var flg=confirm("是否将~_~！")
+        if (flg){
+            var id=$(this).attr("value")
+            $.post("/user/updateOk/"+id,{},function (data) {
+                if (data.code==200){
+                    alert(data.msg)
+                    window.location.reload()
+                }else
+                    alert(data.msg)
+            })
+        }
+    })
+</script>-->
+</body>
+</html>

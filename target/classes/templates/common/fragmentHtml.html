@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="">
+<head th:fragment="common_head(title,links,styles)">
+    <meta charset="UTF-8">
+    <title th:replace="${title}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-responsive.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/fullcalendar.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-style.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-media.css}" />
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/jquery.gritter.css}" />
+
+
+    <th:block th:replace="${links}" />
+    <th:block th:replace="${styles}" />
+</head>
+<body>
+<div id="header" th:fragment="header">
+    <h1><a href="dashboard.html">论文评审系统</a></h1>
+</div>
+<div id="user-nav" th:fragment="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text" shiro:principal property="name"></span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="update"><i class="icon-user"></i> 我的资料</a></li>
+                <li class="divider"></li>
+                <li><a href="/loginOut"><i class="icon-key"></i> 退出</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="/loginOut"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+<div id="user-nav" th:fragment="admin-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class=""><a title="" href="/admin/loginOut"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+<div id="user-nav" th:fragment="student-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text" shiro:principal property="name"></span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/student/update"><i class="icon-user"></i> 我的资料</a></li>
+                <li class="divider"></li>
+                <li><a href="/student/loginOut"><i class="icon-key"></i> 退出</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="/student/loginOut"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+<div id="user-nav" th:fragment="expert-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text" shiro:principal property="name"></span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/expert/update"><i class="icon-user"></i> 我的资料</a></li>
+                <li class="divider"></li>
+                <li><a href="/expert/loginOut"><i class="icon-key"></i> 退出</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="/expert/loginOut"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+<div id="user-nav" th:fragment="teacher-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text" shiro:principal property="name"></span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="/teacher/update"><i class="icon-user"></i> 我的资料</a></li>
+                <li class="divider"></li>
+                <li><a href="/teacher/loginOut"><i class="icon-key"></i> 退出</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="/teacher/loginOut"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" th:fragment="student">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> 控制台</a>
+    <ul>
+        <li class="active"><a href="/student/index"><i class="icon icon-home"></i> <span>首页</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-signal"></i> <span>论文管理</span></a>
+            <ul>
+                <li><a href="/student/paperView">论文</a></li>
+                <li><a href="/paper/insert">上传论文</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="sidebar" th:fragment="admin">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> 控制台</a>
+    <ul>
+        <li class="active"><a href="/admin/index"><i class="icon icon-home"></i> <span>首页</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-signal"></i> <span>论文管理</span></a>
+            <ul>
+                <li><a href="/admin/paperView">论文</a></li>
+            </ul>
+        </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-signal"></i> <span>人员管理</span></a>
+            <ul>
+                <li><a href="/admin/teacher/2">专家</a></li>
+                <li><a href="/admin/teacher/1">老师</a></li>
+                <li><a href="/admin/student">学生</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="sidebar" th:fragment="teacher">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> 控制台</a>
+    <ul>
+        <li class="active"><a href="/teacher/index"><i class="icon icon-home"></i> <span>首页</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-signal"></i> <span>论文管理</span></a>
+            <ul>
+                <li><a href="/teacher/paperView">论文检测</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="sidebar" th:fragment="expert">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> 控制台</a>
+    <ul>
+        <li class="active"><a href="/expert/index"><i class="icon icon-home"></i> <span>首页</span></a> </li>
+        <li class="submenu"> <a href="#"><i class="icon icon-signal"></i> <span>论文管理</span></a>
+            <ul>
+                <li><a href="/expert/paperView">论文评审</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="row-fluid" th:fragment="footer">
+    <div id="footer" class="span12">Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> </div>
+</div>
+
+<div th:fragment="btn_js">
+    <script th:src="@{/js/excanvas.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.ui.custom.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.flot.min.js}"></script>
+    <script th:src="@{/js/jquery.flot.resize.min.js}"></script>
+    <script th:src="@{/js/jquery.peity.min.js}"></script>
+    <script th:src="@{/js/fullcalendar.min.js}"></script>
+    <script th:src="@{/js/matrix.js}"></script>
+    <script th:src="@{/js/matrix.dashboard.js}"></script>
+    <script th:src="@{/js/jquery.gritter.min.js}"></script>
+    <script th:src="@{/js/matrix.interface.js}"></script>
+    <script th:src="@{/js/matrix.chat.js}"></script>
+    <script th:src="@{/js/jquery.validate.js}"></script>
+    <script th:src="@{/js/matrix.form_validation.js}"></script>
+    <script th:src="@{/js/jquery.wizard.js}"></script>
+    <script th:src="@{/js/jquery.uniform.js}"></script>
+    <script th:src="@{/js/select2.min.js}"></script>
+    <script th:src="@{/js/matrix.popover.js}"></script>
+    <script th:src="@{/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/matrix.tables.js}"></script>
+</div>
+
+<div th:fragment="table_seach">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.ui.custom.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.uniform.js}"></script>
+    <script th:src="@{/js/select2.min.js}"></script>
+    <script th:src="@{/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/matrix.js}"></script>
+    <script th:src="@{/js/matrix.tables.js}"></script>
+</div>
+
+<div th:fragment="table_from">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.ui.custom.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/bootstrap-colorpicker.js}"></script>
+    <script th:src="@{/js/bootstrap-datepicker.js}"></script>
+    <script th:src="@{/js/jquery.toggle.buttons.html}"></script>
+    <script th:src="@{/js/masked.js}"></script>
+    <script th:src="@{/js/jquery.uniform.js}"></script>
+    <script th:src="@{/js/select2.min.js}"></script>
+    <script th:src="@{/js/matrix.js}"></script>
+    <script th:src="@{/js/matrix.form_common.js}"></script>
+    <script th:src="@{/js/wysihtml5-0.3.0.js}"></script>
+    <script th:src="@{/js/jquery.peity.min.js}"></script>
+    <script th:src="@{/js/bootstrap-wysihtml5.js}"></script>
+    <script>
+        $('.textarea_editor').wysihtml5();
+    </script>
+</div>
+
+</body>
+</html>

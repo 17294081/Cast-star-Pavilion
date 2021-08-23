@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head th:replace="common/fragmentHtml :: common_head(~{::title},~{},~{})">
+  <title>学生首页</title>
+</head>
+<body>
+<div th:replace="common/fragmentHtml :: header"></div>
+
+<div th:replace="common/fragmentHtml :: admin-nav"></div>
+
+<div th:replace="common/fragmentHtml :: admin"></div>
+
+
+<!--nav-->
+<div id="content">
+  <!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="index" title="返回首页" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+  </div>
+  <div class="container-fluid">
+    <div class="quick-actions_homepage">
+      <ul class="quick-actions">
+        <li class="bg_lb"> <a href="/admin/paperView"> <i class="icon-dashboard"></i> <span class="label label-important"></span> 论文</a> </li>
+        <li class="bg_lg span3"> <a href="/admin/student"> <i class="icon-signal"></i> 人员</a> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div th:replace="common/fragmentHtml :: footer">
+</div>
+
+<div th:replace="common/fragmentHtml :: btn_js"></div>
+
+</body>
+</html>

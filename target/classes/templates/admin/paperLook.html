@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head th:replace="common/fragmentHtml :: common_head(~{::title},~{::link},~{})">
+    <title>论文</title>
+    <link rel="stylesheet" th:href="@{/css/colorpicker.css}" />
+    <link rel="stylesheet" th:href="@{/css/datepicker.css}" />
+    <link rel="stylesheet" th:href="@{/css/uniform.css}" />
+    <link rel="stylesheet" th:href="@{/css/select2.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-wysihtml5.css}" />
+</head>
+<body>
+<div th:replace="common/fragmentHtml :: header"></div>
+
+<div th:replace="common/fragmentHtml :: admin-nav"></div>
+
+<div th:replace="common/fragmentHtml :: admin"></div>
+
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"><a href="/index" title="首页" class="tip-bottom"><i class="icon-home"></i>
+            首页</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"> <i class="icon-align-justify"></i> </span>
+                        <h5>添加论文</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                            <input type="hidden" th:value="${paper.id}" name="id">
+                            <div class="control-group">
+                                <label class="control-label">论文题目 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="paperName" th:value="${paper.paperName}" disabled placeholder="论文题目"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">上传论文（pdf格式） :</label>
+                                <div class="controls">
+                                    <span><a th:href="${paper.paperFile}" target="_blank">原文档</a></span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">来源 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="source" th:value="${paper.source}" disabled placeholder="来源"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">字数 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="words" th:value="${paper.words}" disabled placeholder="字数"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">领域 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="field" th:value="${paper.field}" disabled placeholder="领域"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">指导老师 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="instructor" th:value="${paper.instructorName}" disabled placeholder="指导老师"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">现象 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="instructor" th:value="${paper.instructorName}" disabled placeholder="指导老师"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">专家 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="expertName" th:value="${paper.expertName}" disabled placeholder="指导老师"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">状态 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="type" th:if="${paper.type==('1')}" disabled value="待检测"/>
+                                    <input type="text" class="span11" name="type" th:if="${paper.type==('4')}" disabled value="待审核"/>
+                                    <input type="text" class="span11" name="type" th:if="${paper.type==('2')}" disabled value="通过"/>
+                                    <input type="text" class="span11" name="type" th:if="${paper.type==('3')}" disabled value="不通过"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">上传时间 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="addtime" th:value="${paper.addtime}" disabled placeholder="指导老师"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">评审时间 :</label>
+                                <div class="controls">
+                                    <input type="text" class="span11" name="reTime" th:value="${paper.reTime}" disabled placeholder="指导老师"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/fragmentHtml :: footer">
+</div>
+
+<!--end-Footer-part-->
+<div th:replace="common/fragmentHtml :: table_from">
+
+</div>
+
+</body>
+</html>
